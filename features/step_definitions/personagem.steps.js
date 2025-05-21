@@ -8,10 +8,11 @@ setDefaultTimeout(20 * 1000);
 let browser, page;
 
 Given('que estou na página de criação de personagens', async () => {
-  browser = await puppeteer.launch({
-    headless: true, // use false para visualizar o navegador
-    slowMo: 50,     // ajuda a debugar interações visuais
-  });
+ browser = await puppeteer.launch({
+  headless: true,
+  slowMo: 50,
+  args: ['--no-sandbox', '--disable-setuid-sandbox']
+});
 
   page = await browser.newPage();
   await page.goto('http://localhost:3000'); // ajuste se necessário
