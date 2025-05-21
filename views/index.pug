@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    title Advanced Dungeons and Dragons - Criação de Personagem
+    style.
+      .pronto { font-weight: bold; color: green; }
+  body
+    h1 Criar Personagem
+
+    input#nome(type="text" placeholder="Nome")
+    select#classe
+      option(value="") Selecione uma classe
+      option(value="Guerreiro") Guerreiro
+      option(value="Ranger") Ranger
+      option(value="Clériga") Clériga
+      option(value="Mago") Mago
+
+    button#criar Criar personagem
+
+    ul#lista
+
+    script.
+      const nomeInput = document.getElementById('nome');
+      const classeSelect = document.getElementById('classe');
+      const lista = document.getElementById('lista');
+      document.getElementById('criar').addEventListener('click', () => {
+        const nome = nomeInput.value.trim();
+        const classe = classeSelect.value;
+        if (!nome || !classe) return;
+        const li = document.createElement('li');
+        li.className = 'personagem';
+        li.textContent = `${nome} (${classe})`;
+
+        const btn = document.createElement('button');
+        btn.textContent = 'Pronto!';
+        btn.onclick = () => li.classList.toggle('pronto');
+
+        li.appendChild(btn);
+        lista.appendChild(li);
+        nomeInput.value = '';
+        classeSelect.value = '';
+      });
